@@ -1,0 +1,54 @@
+{
+    "variables": {
+        "build_name": "ubuntu-vault",
+        "base_ami_id": "",
+        "vault_ver": "",
+        "tag_owner": "",
+        "aws_region": "{{env `AWS_REGION`}}"
+    },
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "ssh_username": "ubuntu",
+            "source_ami": "{{user `base_ami_id`}}",
+            "region": "{{user `aws_region`}}",
+            "instance_type": "t2.micro",
+            "ami_name": "{{user `tag_owner`}}-ubuntu-vault-{{user `vault_ver`}}-{{isotime \"20060102\"}}",
+            "tags": {
+              "owner": "{{user `tag_owner`}}",
+              "base_ami": "{{user `base_ami_id`}}"
+            }
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "file",
+            "source": "{{template_dir}}/config/",
+            "destination": "/tmp"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/script/vault_init.sh",
+            "destination": "/tmp/vault_init.sh"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/script/vault_unseal.sh",
+            "destination": "/tmp/vault_unseal.sh"
+        },
+        {
+            "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash {{.Path}}",
+            "scripts": [
+                "{{template_dir}}/script/vault_install.sh",
+                "{{template_dir}}/script/vault_setup_service.sh",
+                "{{template_dir}}/script/vault_copy_helpers.sh",
+                "{{template_dir}}/script/cleanup_final.sh"
+            ],
+            "environment_vars": [
+                "DEBIAN_FRONTEND=noninteractive",
+                "VAULT_VER={{user `vault_ver`}}"
+            ],
+            "type": "shell"
+        }
+    ]
+}
