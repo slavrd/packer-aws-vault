@@ -23,7 +23,7 @@ The packer template is in `template.json`. In the `variables` section you can se
 
 Run `packer validate template.json` - to make basic template validation.
 
-Run `packer build -var "base_ami_id=" template.json` - to build the Vagrant box with packer.
+Run `packer build -var "aws_region=eu-central-1" -var "base_ami_id=ami-09356619876445425" template.json` - to build the Vagrant box with packer.
 
 ## Testing [terratest](https://github.com/gruntwork-io/terratest/)
 
@@ -44,7 +44,7 @@ The test will:
 1. Install [terraform](https://www.terraform.io/downloads.html) >= 12.0.
 2. Install [Golang](https://golang.org/dl/) >= 1.13 if not already installed.
 3. Install dependency golang packages - `go get -v -d -t ./test/...`.
-4. Configure AWS SDK credentials using environment variables and also set `AWS_REGION` environment variable to the region you want to create your AMI in.
+4. Configure AWS SDK credentials.
 
 ## Running the test
 
