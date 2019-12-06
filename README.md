@@ -25,7 +25,7 @@ Run `packer validate template.json` - to make basic template validation.
 
 Run `packer build -var "aws_region=eu-central-1" -var "base_ami_id=ami-09356619876445425" template.json` - to build the Vagrant box with packer.
 
-## Testing [terratest](https://github.com/gruntwork-io/terratest/)
+## Testing with [terratest](https://github.com/gruntwork-io/terratest/)
 
 The project includes a test using the [terratest](https://github.com/gruntwork-io/terratest/) library with the Golang test framework.
 
@@ -39,13 +39,13 @@ The test will:
 
 **Note:** Currently the test will run in a subnet from the Default VPC in the selected region.
 
-## Prerequisites
+### Prerequisites
 
 1. Install [terraform](https://www.terraform.io/downloads.html) >= 12.0.
 2. Install [Golang](https://golang.org/dl/) >= 1.13 if not already installed.
 3. Install dependency golang packages - `go get -v -d -t ./test/...`.
 4. Configure AWS SDK credentials.
 
-## Running the test
+### Running the test
 
 Run `go test -v -timeout=60m ./test/`.
