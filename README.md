@@ -28,7 +28,7 @@ Run to build the Vagrant box with packer
 ```
 packer build \
 -var "aws_region=eu-central-1" \
--var "base_ami_id=ami-09356619876445425" \
+-var "base_ami_id=ami-0718a1ae90971ce4d" \
 -var "vault_ver=1.3.2" \
 -var "tag_owner=name@domain.com" \
 template.json
