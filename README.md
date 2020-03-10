@@ -23,7 +23,16 @@ The packer template is in `template.json`. In the `variables` section you can se
 
 Run `packer validate template.json` - to make basic template validation.
 
-Run `packer build -var "aws_region=eu-central-1" -var "base_ami_id=ami-09356619876445425" template.json` - to build the Vagrant box with packer.
+Run to build the Vagrant box with packer
+
+```
+packer build \
+-var "aws_region=eu-central-1" \
+-var "base_ami_id=ami-09356619876445425" \
+-var "vault_ver=1.3.2" \
+-var "tag_owner=name@domain.com" \
+template.json
+```
 
 ## Testing with [terratest](https://github.com/gruntwork-io/terratest/)
 
