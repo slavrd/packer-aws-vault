@@ -2,7 +2,7 @@
     "variables": {
         "build_name": "ubuntu-vault",
         "base_ami_id": "",
-	"ami_name_prefix": "",
+	    "ami_name_prefix": "",
         "vault_ver": "",
         "tag_owner": "",
         "aws_region": "{{env `AWS_REGION`}}"
