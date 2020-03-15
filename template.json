@@ -2,6 +2,7 @@
     "variables": {
         "build_name": "ubuntu-vault",
         "base_ami_id": "",
+	"ami_name_prefix": "",
         "vault_ver": "",
         "tag_owner": "",
         "aws_region": "{{env `AWS_REGION`}}"
@@ -13,7 +14,7 @@
             "source_ami": "{{user `base_ami_id`}}",
             "region": "{{user `aws_region`}}",
             "instance_type": "t2.micro",
-            "ami_name": "{{user `tag_owner`}}-ubuntu-vault-{{user `vault_ver`}}-{{isotime \"20060102\"}}",
+            "ami_name": "{{user `ami_name_prefix`}}ubuntu-vault-{{user `vault_ver`}}-{{isotime \"20060102\"}}",
             "tags": {
               "owner": "{{user `tag_owner`}}",
               "base_ami": "{{user `base_ami_id`}}"
