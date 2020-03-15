@@ -18,6 +18,7 @@ The packer template is in `template.json`. In the `variables` section you can se
 * `vault_ver` - the version of Vault to install. If it is set to an empty string, the latest version will be installed.
 * `aws_region` - the AWS region in which to build the AMI. Will default to the value of `AWS_REGION` environment variable
 * `base_ami_id`  - the base ami to use. Needs to be the in the region configured with `aws_region` variable.
+* `ami_name_prefix` - a prefix to include in the name of the AMI.
 * `tag_owner` - set the value of an AWS tag named `owner` which will be applied to the ami.
 * `build_name` - used internally to set parameters of the packer builder. Usually no need to change it.
 
@@ -29,6 +30,7 @@ Run to build the Vagrant box with packer
 packer build \
 -var "aws_region=eu-central-1" \
 -var "base_ami_id=ami-0718a1ae90971ce4d" \
+-var "ami_name_prefix=prefix-"
 -var "vault_ver=1.3.2" \
 -var "tag_owner=name@domain.com" \
 template.json
